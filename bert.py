@@ -123,10 +123,10 @@ def evaluate(data):
                 y_pred_total.append(1)
             else:
                 y_pred_total.append(0)
-    precision, recall, F1_score = val_F1score(np.array(y_true_total), np.array(y_pred_total))
+    precision, recall, f1_score = val_F1score(np.array(y_true_total), np.array(y_pred_total))
     print(u'precision: %.5f, recall: %.5f,F1_score: %.5f\n' %
-          (precision, recall, F1_score))
-    return F1_score
+          (precision, recall, f1_score))
+    return f1_score
 
 def predict_test(filename):
     """
