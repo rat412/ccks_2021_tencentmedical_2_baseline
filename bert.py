@@ -110,7 +110,6 @@ def val_F1score(y_true,y_pred):
 def evaluate(data):
     """评测函数
     """
-    best_F1 = 0
     y_true_total = []
     y_pred_total = []
     for x_true, y_true in data:
@@ -125,12 +124,9 @@ def evaluate(data):
             else:
                 y_pred_total.append(0)
     precision, recall, F1_score = val_F1score(np.array(y_true_total), np.array(y_pred_total))
-
-    if F1_score > best_F1:
-        best_F1 = F1_score
-    print(u'precision: %.5f, recall: %.5f,F1_score: %.5f,best_F1score: %.5f\n' %
-          (precision, recall, F1_score, best_F1))
-    return best_F1
+    print(u'precision: %.5f, recall: %.5f,F1_score: %.5f\n' %
+          (precision, recall, F1_score))
+    return F1_score
 
 def predict_test(filename):
     """
