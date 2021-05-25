@@ -173,5 +173,5 @@ if __name__ == '__main__':
         epochs=10,
         callbacks=[evaluator]
     )
-    model.load_weights(('best_model.weights'))
+    model.load_weights('best_model.weights')
     predict_test('valid_result.csv')
