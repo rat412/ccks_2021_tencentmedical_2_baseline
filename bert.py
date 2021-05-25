@@ -43,8 +43,8 @@ for line in test_df:
     content2 = line['Answer']
     train_data.append((content1, content2, line['Docid']))
 
-train_data = train_data[5000:]
 valid_data = train_data[:5000]
+train_data = train_data[5000:]
 
 # 建立分词器
 tokenizer = Tokenizer(dict_path, do_lower_case=True)
