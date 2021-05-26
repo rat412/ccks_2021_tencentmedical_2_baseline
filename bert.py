@@ -131,7 +131,6 @@ def evaluate(data):
 def predict_test(filename):
     """
     测试集预测到文件
-    还没发布提交文件的具体格式，后面可能要自己改
     """
     with open(filename, 'w') as f:
         f.write('Docid,label\n')
@@ -146,7 +145,7 @@ def predict_test(filename):
             y_true = y_true[:, 0]
             for id, y in zip(y_true, y_pred_argmax):
                 f.write('%s,%s\n' % (id, y))
-
+                
 class Evaluator(keras.callbacks.Callback):
     """评估与保存
     """
@@ -170,4 +169,10 @@ if __name__ == '__main__':
         callbacks=[evaluator]
     )
     model.load_weights('best_model.weights')
-    predict_test('valid_result.csv')
+    predict_test('valid_prediction.csv')
+    
+    test = pd.read_csv('raw_data/wa.test.phase1.fixtab.valid.tsv', sep='\t')
+    prediction = pd.read_csv('valid_prediction.csv', sep=',')
+    test_final = pd.merge(test, prediction, on='Docid')
+
+    test_final[['Label','Docid','Question','Description','Answer']].to_csv('valid_test.csv',sep='\t', index=False)
