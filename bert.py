@@ -175,4 +175,4 @@ if __name__ == '__main__':
     prediction = pd.read_csv('valid_prediction.csv', sep=',')
     test_final = pd.merge(test, prediction, on='Docid')
 
-    test_final[['Label','Docid','Question','Description','Answer']].to_csv('valid_test.tsv',sep='\t', index=False)
+    test_final[['Label','Docid','Question','Description','Answer']].to_csv('队伍名_valid_result.txt',sep='\t', index=False)
